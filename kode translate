@@ -1,0 +1,43 @@
+#include <cstdio>
+#include <cstring>
+
+const int MAX_WORDS = 5;
+const int MAX_LENGTH = 20;
+
+const char* english[MAX_WORDS] = {"hello", "goodbye", "thank you", "please", "sorry"};
+const char* sundanese[MAX_WORDS] = {"halo", "wilujeng sumping", "hatur nuhun", "mangga", "punten"};
+const char* cirebonese[MAX_WORDS] = {"kulanuwun", "selamet jalan", "matur nuwun", "mangga", "pangapunten"};
+const char* indonesian[MAX_WORDS] = {"halo", "selamat tinggal", "terima kasih", "silakan", "maaf"};
+
+void translate(const char* word, const char* language) {
+    for (int i = 0; i < MAX_WORDS; i++) {
+        if (strcmp(word, english[i]) == 0) {
+            if (strcmp(language, "sundanese") == 0) {
+                printf("%s\n", sundanese[i]);
+            } else if (strcmp(language, "cirebonese") == 0) {
+                printf("%s\n", cirebonese[i]);
+            } else if (strcmp(language, "indonesian") == 0) {
+                printf("%s\n", indonesian[i]);
+            } else {
+                printf("Language not supported.\n");
+            }
+            return;
+        }
+    }
+    printf("Word not found in the dictionary.\n");
+}
+
+int main() {
+    char word[MAX_LENGTH];
+    char language[MAX_LENGTH];
+
+    printf("Enter an English word: ");
+    scanf("%19s", word);
+
+    printf("Enter the target language (sundanese/cirebonese/indonesian): ");
+    scanf("%19s", language);
+
+    translate(word, language);
+
+    return 0;
+}
